@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#ff7a00"/>
+<title>Namma Ooru Kulfi • Business Manager</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap');
+:root{--orange:#ff6b00;--amber:#ffb000;--cream:#fff8ed;--ink:#171b22;--muted:#7b8491;--line:#eee6db;--green:#0ca678;--red:#e5484d;--white:#fff;--shadow:0 10px 35px rgba(76,43,9,.09)}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#fffaf2,#fff3df);font-family:'DM Sans',sans-serif;color:var(--ink)}
+button,input,select{font:inherit}button{cursor:pointer}.app{min-height:100vh}.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(15px);border-bottom:1px solid var(--line);height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#ff6500,#ffc21c);display:grid;place-items:center;font-size:25px;box-shadow:0 6px 18px #ff81002b}.brand h1{font-size:17px;margin:0;font-weight:800;letter-spacing:.3px}.brand small{color:var(--muted);font-size:11px}.top-actions{display:flex;gap:8px}.iconbtn{border:1px solid var(--line);background:white;width:40px;height:40px;border-radius:12px}.layout{display:flex;max-width:1280px;margin:auto}.side{width:230px;padding:22px 12px;position:sticky;top:72px;height:calc(100vh - 72px)}.side button{width:100%;border:0;background:transparent;text-align:left;padding:13px 14px;border-radius:13px;margin:3px 0;color:#66707d;font-weight:600}.side button.active{background:#fff0dc;color:#e75f00;box-shadow:inset 3px 0 0 var(--orange)}.content{flex:1;padding:26px 24px 100px;min-width:0}.title{display:flex;justify-content:space-between;align-items:end;margin-bottom:20px}.title h2{font-size:28px;margin:0}.title p{margin:5px 0 0;color:var(--muted);font-size:13px}.hero{background:linear-gradient(135deg,#2a1608,#793700);color:#fff;border-radius:24px;padding:24px;position:relative;overflow:hidden;box-shadow:var(--shadow);margin-bottom:18px}.hero:after{content:'🍦';position:absolute;right:35px;top:12px;font-size:100px;opacity:.12;transform:rotate(12deg)}.hero h2{font-family:'Playfair Display',serif;font-size:30px;margin:0 0 6px}.hero p{opacity:.8;margin:0;font-size:13px}.hero .mini{display:flex;gap:10px;margin-top:17px;flex-wrap:wrap}.badge{padding:8px 11px;border-radius:99px;background:#ffffff16;border:1px solid #ffffff20;font-size:12px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.stat{background:white;border:1px solid #fff0df;border-radius:18px;padding:17px;box-shadow:var(--shadow)}.stat .emoji{font-size:21px}.stat small{display:block;color:var(--muted);margin-top:8px}.stat strong{display:block;font-size:24px;margin-top:3px}.profit{color:var(--green)}.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.card{background:white;border:1px solid #fff0df;border-radius:20px;padding:18px;box-shadow:var(--shadow)}.card h3{margin:0 0 13px;font-size:16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:11px}.field label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#737b86;margin:0 0 6px}.field input,.field select{width:100%;border:1px solid #ded7cd;background:#fffdf9;padding:12px;border-radius:11px;outline:0}.field input:focus,.field select:focus{border-color:#ff9b42;box-shadow:0 0 0 3px #ff9b421c}.primary{width:100%;border:0;padding:13px;border-radius:12px;background:linear-gradient(135deg,#ff6500,#ffb000);color:#fff;font-weight:800;box-shadow:0 8px 18px #ff81002b}.secondary{border:0;padding:10px 12px;border-radius:10px;background:#fff0dc;color:#b64f00;font-weight:700}.danger{border:0;padding:10px 12px;border-radius:10px;background:#ffe7e7;color:#c42d32;font-weight:700}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:600px}th,td{padding:12px 10px;border-bottom:1px solid #f0ebe4;text-align:left;font-size:12px}th{background:#fff8eb;color:#81501e;font-size:11px;text-transform:uppercase}td.num,th.num{text-align:right}.pill{display:inline-block;padding:5px 8px;border-radius:99px;background:#fff1dd;color:#a95100;font-size:10px;font-weight:800}.low{color:var(--red);font-weight:800}.ok{color:var(--green);font-weight:800}.empty{text-align:center;padding:28px;color:var(--muted)}.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick button{padding:15px;border:1px solid var(--line);background:#fff;border-radius:14px;text-align:left}.quick b{display:block;margin-bottom:3px}.quick span{font-size:11px;color:var(--muted)}.menuitem{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee}.menuitem:last-child{border-bottom:0}.menuleft{display:flex;gap:10px;align-items:center}.foodicon{width:38px;height:38px;border-radius:12px;background:#fff0db;display:grid;place-items:center}.menuitem b{font-size:13px}.menuitem small{color:var(--muted);font-size:11px}.bottom{display:none}.toast{position:fixed;right:20px;bottom:20px;background:#20242b;color:#fff;padding:13px 17px;border-radius:13px;z-index:50;box-shadow:0 10px 30px #0003;font-size:13px}.kpi{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid #eee}.kpi:last-child{border:0}.kpi span{color:var(--muted);font-size:12px}.kpi b{font-size:15px}.section{margin-top:16px}
+@media(max-width:850px){.side{display:none}.content{padding:18px 13px 90px}.topbar{padding:0 13px}.stats{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}.bottom{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:30;padding:6px}.bottom button{flex:1;border:0;background:#fff;color:#777;font-size:10px;padding:7px}.bottom button.active{color:#e86100;font-weight:800}.title h2{font-size:23px}.hero h2{font-size:25px}}
+@media(max-width:430px){.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:20px}.row{grid-template-columns:1fr}.top-actions{display:none}}
+</style>
+</head>
+<body><div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect}=React;
+const initial=[
+["Special Stick","Kesar Badam"],["Special Stick","Kesar Pista"],["Special Stick","Chocolate"],["Special Stick","Kesar Cashew"],["Special Stick","Pista Badam"],
+["Premium Stick","Shahi Gulab"],["Premium Stick","Blueberry"],["Premium Stick","Dry Fruit"],["Premium Stick","Black Raisin"],["Premium Stick","Strawberry"],
+["Natural Stick","Mango"],["Natural Stick","Jackfruit"],["Natural Stick","Watermelon"],["Natural Stick","Guava"],["Natural Stick","Tender Coconut"],["Natural Stick","Custard Apple"]
+];
+const WHOLESALE=26;
+const DEFAULT_COSTS={wages:200,bill:200,other:100};
+const seed={menu:initial.map(([cat,name])=>({cat,name,price:40})),stock:{},stockIn:[],sales:[]};
+initial.forEach(([,n])=>seed.stock[n]=0);
+function load(){
+ try{
+  const d=JSON.parse(localStorage.getItem("nammaOoruKulfiReact"))||seed;
+  d.costs={...DEFAULT_COSTS,...(d.costs||{})};
+  return d;
+ }catch{return {...seed,costs:{...DEFAULT_COSTS}}}
+}
+const money=n=>"₹"+Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2});
+const today=x=>new Date(x).toDateString()===new Date().toDateString();
+function App(){
+ const [db,setDb]=useState(load),[page,setPage]=useState("dashboard"),[toast,setToast]=useState("");
+ useEffect(()=>localStorage.setItem("nammaOoruKulfiReact",JSON.stringify(db)),[db]);
+ window.__setKulfiCosts=c=>setDb(d=>({...d,costs:{...(d.costs||DEFAULT_COSTS),...c}}));
+ const notify=x=>{setToast(x);setTimeout(()=>setToast(""),1800)};
+ const cats=[...new Set(db.menu.map(x=>x.cat))];
+ const sold=db.sales.reduce((a,x)=>a+x.q,0),revenue=db.sales.reduce((a,x)=>a+x.q*x.p,0);
+ const stockTotal=Object.values(db.stock).reduce((a,b)=>a+b,0),profit=revenue-sold*WHOLESALE;
+ const todaySales=db.sales.filter(x=>today(x.date)),todaySold=todaySales.reduce((a,x)=>a+x.q,0),todayRev=todaySales.reduce((a,x)=>a+x.q*x.p,0),todayProfit=todayRev-todaySold*WHOLESALE;
+ const avgCost=WHOLESALE;
+ function addStock(f,q,note){setDb(d=>({...d,stock:{...d.stock,[f]:(d.stock[f]||0)+q},stockIn:[...d.stockIn,{date:new Date().toISOString(),f,q,c:WHOLESALE,note}]}));notify("Stock added")}
+ function addSale(f,q,p,pay){if((db.stock[f]||0)<q){notify("Not enough stock");return false}setDb(d=>({...d,stock:{...d.stock,[f]:d.stock[f]-q},sales:[...d.sales,{date:new Date().toISOString(),f,q,p,pay,c:WHOLESALE}]}));notify("Sale saved");return true}
+ function addMenu(cat,name,price){if(!name.trim()||db.menu.some(x=>x.name.toLowerCase()===name.trim().toLowerCase())){notify("Enter a unique flavour name");return}setDb(d=>({...d,menu:[...d.menu,{cat,name:name.trim(),price:+price||40}],stock:{...d.stock,[name.trim()]:0}}));notify("New flavour added")}
+ function changePrice(name){let m=db.menu.find(x=>x.name===name),v=prompt("Selling price for "+name,m?.price);if(v!==null&&!isNaN(+v))setDb(d=>({...d,menu:d.menu.map(x=>x.name===name?{...x,price:+v}:x)}))}
+ function exportData(){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:"application/json"}));a.download="namma-ooru-kulfi-backup.json";a.click()}
+ const nav=[["dashboard","⌂","Dashboard"],["stock","▣","Stock"],["sales","＋","Sales"],["reports","▥","Reports"],["settings","⚙","Settings"]];
+ return <div className="app">
+ <header className="topbar"><div className="brand"><div className="logo">🍦</div><div><h1>NAMMA OORU KULFI</h1><small>Business Management</small></div></div><div className="top-actions"><button className="iconbtn" onClick={()=>setPage("settings")}>⚙</button></div></header>
+ <div className="layout"><aside className="side">{nav.map(n=><button key={n[0]} className={page===n[0]?"active":""} onClick={()=>setPage(n[0])}>{n[1]} &nbsp; {n[2]}</button>)}</aside>
+ <main className="content">
+ {page==="dashboard"&&<Dashboard db={db} cats={cats} todayRev={todayRev} todaySold={todaySold} stockTotal={stockTotal} todayProfit={todayProfit} setPage={setPage}/>}
+ {page==="stock"&&<Stock db={db} cats={cats} addStock={addStock}/>}
+ {page==="sales"&&<Sales db={db} cats={cats} addSale={addSale}/>}
+ {page==="reports"&&<Reports db={db} sold={sold} revenue={revenue} profit={profit}/>}
+ {page==="settings"&&<Settings db={db} cats={cats} addMenu={addMenu} changePrice={changePrice} exportData={exportData}/>}
+ </main></div>
+ <nav className="bottom">{nav.map(n=><button key={n[0]} className={page===n[0]?"active":""} onClick={()=>setPage(n[0])}>{n[1]}<br/>{n[2]}</button>)}</nav>
+ {toast&&<div className="toast">✓ {toast}</div>}
+ </div>
+}
+function Dashboard({db,cats,todayRev,todaySold,stockTotal,todayProfit,setPage}){
+ return <><div className="title"><div><h2>Dashboard</h2><p>Today's business at a glance</p></div></div>
+ <div className="hero"><h2>Pure Taste. Pure Happiness.</h2><p>Keep every kulfi, sale and rupee under control.</p><div className="mini"><span className="badge">Wholesale Cost: ₹26 / piece</span><span className="badge">Default Retail: ₹40 / piece</span><span className="badge">Profit: ₹14 / piece*</span></div></div>
+ <div className="stats"><Stat e="💰" l="Today's Revenue" v={money(todayRev)}/><Stat e="🍦" l="Today's Kulfi Sold" v={todaySold}/><Stat e="📦" l="Available Stock" v={stockTotal}/><Stat e="📈" l="Today's Profit" v={money(todayProfit)} cls="profit"/></div>
+ <div className="cards"><div className="card"><h3>Quick Actions</h3><div className="quick"><button onClick={()=>setPage("stock")}><b>📦 Add Stock</b><span>Receive wholesale stock</span></button><button onClick={()=>setPage("sales")}><b>🧾 Record Sale</b><span>Reduce stock & calculate profit</span></button></div></div>
+ <div className="card"><h3>Stock by Category</h3>{cats.map(c=><div className="kpi" key={c}><span>{c}</span><b>{db.menu.filter(m=>m.cat===c).reduce((a,m)=>a+(db.stock[m.name]||0),0)} pieces</b></div>)}</div></div>
+ <div className="card section"><h3>Low Stock</h3>{db.menu.filter(m=>(db.stock[m.name]||0)<10).slice(0,8).map(m=><div className="kpi" key={m.name}><span>{m.name}</span><b className="low">{db.stock[m.name]||0} left</b></div>)}{!db.menu.some(m=>(db.stock[m.name]||0)<10)&&<div className="empty">All flavours have healthy stock.</div>}</div>
+ <p className="muted section">*Profit shown here uses ₹26 wholesale cost per kulfi and excludes other business expenses.</p></>
+}
+function Stat({e,l,v,cls=""}){return <div className="stat"><span className="emoji">{e}</span><small>{l}</small><strong className={cls}>{v}</strong></div>}
+function Stock({db,cats,addStock}){
+ const [cat,setCat]=useState(cats[0]||""),[f,setF]=useState(""),[q,setQ]=useState(""),[note,setNote]=useState("");
+ const options=db.menu.filter(m=>m.cat===cat);useEffect(()=>{if(options[0])setF(options[0].name)},[cat,db.menu.length]);
+ return <><div className="title"><div><h2>Stock In</h2><p>Wholesale purchase cost is fixed at <b>₹26</b> per kulfi.</p></div></div>
+ <div className="card"><div className="row"><Field label="Category"><select value={cat} onChange={e=>setCat(e.target.value)}>{cats.map(c=><option key={c}>{c}</option>)}</select></Field><Field label="Flavour"><select value={f} onChange={e=>setF(e.target.value)}>{options.map(m=><option key={m.name}>{m.name}</option>)}</select></Field></div>
+ <div className="row"><Field label="Quantity Received"><input type="number" min="1" value={q} onChange={e=>setQ(e.target.value)} placeholder="0"/></Field><Field label="Wholesale Cost / Piece"><input value="₹26" readOnly/></Field></div>
+ <Field label="Supplier / Note (optional)"><input value={note} onChange={e=>setNote(e.target.value)} placeholder="Supplier, batch or delivery note"/></Field>
+ <button className="primary" onClick={()=>{if(+q>0){addStock(f,+q,note);setQ("");setNote("")}}}>ADD STOCK • {q?money(+q*26):"₹0"}</button></div>
+ <div className="card section"><h3>Inventory</h3><Inventory db={db}/></div></>
+}
+function Inventory({db}){return <div className="tablewrap"><table><thead><tr><th>Category</th><th>Flavour</th><th className="num">Available</th><th className="num">Retail</th><th className="num">Wholesale</th></tr></thead><tbody>{db.menu.map(m=><tr key={m.name}><td><span className="pill">{m.cat.replace(" Stick","")}</span></td><td>{m.name}</td><td className="num">{db.stock[m.name]||0}</td><td className="num">{money(m.price)}</td><td className="num">₹26</td></tr>)}</tbody></table></div>}
+function Sales({db,cats,addSale}){
+ const [cat,setCat]=useState(cats[0]||""),[f,setF]=useState(""),[q,setQ]=useState(""),[p,setP]=useState(40),[pay,setPay]=useState("Cash");const opts=db.menu.filter(m=>m.cat===cat);
+ useEffect(()=>{if(opts[0]){setF(opts[0].name);setP(opts[0].price)}},[cat,db.menu.length]);
+ const m=db.menu.find(x=>x.name===f),qty=+q||0,total=qty*(+p||0),profit=qty*((+p||0)-26);
+ return <><div className="title"><div><h2>Sales / Stock Out</h2><p>Every sale automatically deducts stock and calculates profit.</p></div></div>
+ <div className="card"><div className="row"><Field label="Category"><select value={cat} onChange={e=>setCat(e.target.value)}>{cats.map(c=><option key={c}>{c}</option>)}</select></Field><Field label="Flavour"><select value={f} onChange={e=>{setF(e.target.value);setP(db.menu.find(x=>x.name===e.target.value)?.price||40)}}>{opts.map(x=><option key={x.name}>{x.name}</option>)}</select></Field></div>
+ <div className="row"><Field label="Quantity Sold"><input type="number" min="1" value={q} onChange={e=>setQ(e.target.value)} placeholder="0"/></Field><Field label="Selling Price / Piece"><input type="number" min="0" value={p} onChange={e=>setP(e.target.value)}/></Field></div>
+ <Field label="Payment Mode"><select value={pay} onChange={e=>setPay(e.target.value)}><option>Cash</option><option>UPI</option><option>Other</option></select></Field>
+ <div className="row"><div className="card" style={{margin:0,background:"#fff9ee"}}><small>Sale Value</small><div className="big">{money(total)}</div></div><div className="card" style={{margin:0,background:"#edfff7"}}><small>Profit</small><div className="big profit">{money(profit)}</div></div></div>
+ <button className="primary" onClick={()=>{if(q>0&&addSale(f,qty,+p,pay)){setQ("")}}}>SAVE SALE • {money(total)}</button></div>
+ <div className="card section"><h3>Recent Sales</h3>{db.sales.length?<div className="tablewrap"><table><thead><tr><th>Date</th><th>Flavour</th><th className="num">Qty</th><th className="num">Revenue</th><th className="num">Profit</th><th>Pay</th></tr></thead><tbody>{db.sales.slice(-30).reverse().map((x,i)=><tr key={i}><td>{new Date(x.date).toLocaleDateString("en-IN")}</td><td>{x.f}</td><td className="num">{x.q}</td><td className="num">{money(x.q*x.p)}</td><td className="num profit">{money(x.q*(x.p-26))}</td><td>{x.pay}</td></tr>)}</tbody></table></div>:<div className="empty">No sales recorded yet.</div>}</div></>
+}
+function Reports({db,sold,revenue,profit}){
+ const [wages,setWages]=useState(db.costs?.wages??200);
+ const [bill,setBill]=useState(db.costs?.bill??200);
+ const [other,setOther]=useState(db.costs?.other??100);
+ const todaySales=db.sales.filter(x=>today(x.date));
+ const todayQty=todaySales.reduce((a,x)=>a+x.q,0);
+ const todayRev=todaySales.reduce((a,x)=>a+x.q*x.p,0);
+ const todayWholesale=todayQty*26;
+ const todayGross=todayRev-todayWholesale;
+ const dailyExpenses=(+wages||0)+(+bill||0)+(+other||0);
+ const todayNet=todayGross-dailyExpenses;
+ const allOperatingExpenses=(+db.costs?.wages||200)+(+db.costs?.bill||200)+(+db.costs?.other||100);
+ const netProfit=profit-allOperatingExpenses;
+ const saveCosts=()=>{setCosts({wages:+wages||0,bill:+bill||0,other:+other||0});};
+ const setCosts=c=>{window.__setKulfiCosts?.(c)};
+ return <><div className="title"><div><h2>Reports & Profit</h2><p>Wholesale cost ₹26 + daily operating expenses are included in net profit.</p></div></div>
+ <div className="stats">
+ <Stat e="💰" l="All-time Revenue" v={money(revenue)}/>
+ <Stat e="🍦" l="Total Sold" v={sold}/>
+ <Stat e="🏷️" l="Wholesale Cost" v={money(sold*26)}/>
+ <Stat e="📈" l="Gross Profit" v={money(profit)} cls="profit"/>
+ </div>
+ <div className="cards">
+ <div className="card"><h3>💸 Daily Operating Costs</h3>
+  <div className="row">
+   <Field label="Daily Wages"><input type="number" min="0" value={wages} onChange={e=>setWages(e.target.value)}/></Field>
+   <Field label="Current Bill"><input type="number" min="0" value={bill} onChange={e=>setBill(e.target.value)}/></Field>
+  </div>
+  <Field label="Other Cost"><input type="number" min="0" value={other} onChange={e=>setOther(e.target.value)}/></Field>
+  <div className="kpi"><span>Total Daily Expenses</span><b>{money(dailyExpenses)}</b></div>
+  <button className="primary" onClick={()=>{setCosts({wages:+wages||0,bill:+bill||0,other:+other||0});notify("Daily costs updated")}}>SAVE DAILY COSTS</button>
+  <p className="muted">Default: Wages ₹200 + Current Bill ₹200 + Other ₹100 = ₹500/day.</p>
+ </div>
+ <div className="card"><h3>📌 Today's Net Profit</h3>
+  <div className="kpi"><span>Today's Revenue</span><b>{money(todayRev)}</b></div>
+  <div className="kpi"><span>Wholesale Cost ({todayQty} × ₹26)</span><b>{money(todayWholesale)}</b></div>
+  <div className="kpi"><span>Gross Profit</span><b className="profit">{money(todayGross)}</b></div>
+  <div className="kpi"><span>Daily Expenses</span><b>{money(dailyExpenses)}</b></div>
+  <div className="kpi"><span><b>Net Profit</b></span><b className={todayNet>=0?"profit":"low"}>{money(todayNet)}</b></div>
+ </div>
+ </div>
+ <div className="card section"><h3>📊 Profit Formula</h3>
+  <p className="muted">Net Profit = Sales Revenue − (Kulfi Sold × ₹26 wholesale cost) − Daily Wages − Current Bill − Other Cost.</p>
+  <div className="kpi"><span>Default wholesale cost</span><b>₹26 / kulfi</b></div>
+  <div className="kpi"><span>Default daily operating cost</span><b>₹500 / day</b></div>
+  <div className="kpi"><span>Default profit at ₹40 selling price</span><b className="profit">₹14 / kulfi before daily costs</b></div>
+ </div>
+ <div className="card section"><h3>Flavour-wise Performance</h3><div className="tablewrap"><table><thead><tr><th>Flavour</th><th>Category</th><th className="num">Sold</th><th className="num">Revenue</th><th className="num">Wholesale Cost</th><th className="num">Gross Profit</th><th className="num">Stock</th></tr></thead><tbody>{db.menu.map(m=>{let s=db.sales.filter(x=>x.f===m.name),q=s.reduce((a,x)=>a+x.q,0),r=s.reduce((a,x)=>a+x.q*x.p,0);return <tr key={m.name}><td>{m.name}</td><td>{m.cat}</td><td className="num">{q}</td><td className="num">{money(r)}</td><td className="num">{money(q*26)}</td><td className="num profit">{money(r-q*26)}</td><td className="num">{db.stock[m.name]||0}</td></tr>})}</tbody></table></div></div>
+ <div className="card section"><h3>💼 All-time Profit Summary</h3>
+  <div className="kpi"><span>Gross Profit</span><b className="profit">{money(profit)}</b></div>
+  <div className="kpi"><span>Daily Wages</span><b>{money(db.costs?.wages??200)}</b></div>
+  <div className="kpi"><span>Current Bill</span><b>{money(db.costs?.bill??200)}</b></div>
+  <div className="kpi"><span>Other Cost</span><b>{money(db.costs?.other??100)}</b></div>
+  <div className="kpi"><span><b>Net Profit after current operating costs</b></span><b className={netProfit>=0?"profit":"low"}>{money(netProfit)}</b></div>
+  <p className="muted">The three operating costs are treated as daily costs. All-time net profit above subtracts one current daily cost set from gross profit; for exact historical monthly profit, enter the costs for each day as you operate.</p>
+ </div>
+ </>}
+function Settings({db,cats,addMenu,changePrice,exportData}){
+ const [cat,setCat]=useState(cats[0]||"Special Stick"),[name,setName]=useState(""),[price,setPrice]=useState(40),[newCat,setNewCat]=useState("");
+ return <><div className="title"><div><h2>Settings</h2><p>Add new flavours and update your menu anytime.</p></div></div>
+ <div className="cards"><div className="card"><h3>➕ Add New Flavour</h3><Field label="Category"><select value={cat} onChange={e=>setCat(e.target.value)}>{cats.map(c=><option key={c}>{c}</option>)}<option>New Category</option></select></Field>{cat==="New Category"&&<Field label="New Category Name"><input value={newCat} onChange={e=>setNewCat(e.target.value)} placeholder="Example: Family Pack"/></Field>}
+ <Field label="English Flavour Name"><input value={name} onChange={e=>setName(e.target.value)} placeholder="Example: Pistachio Rose"/></Field><Field label="Selling Price"><input type="number" value={price} onChange={e=>setPrice(e.target.value)}/></Field><p className="muted">Wholesale cost is automatically <b>₹26</b> per piece.</p><button className="primary" onClick={()=>{let c=cat==="New Category"?newCat.trim():cat;if(c&&name.trim()){addMenu(c,name,price);setName("")}}}>ADD TO MENU</button></div>
+ <div className="card"><h3>💾 Business Data</h3><div className="kpi"><span>Flavours</span><b>{db.menu.length}</b></div><div className="kpi"><span>Sales Entries</span><b>{db.sales.length}</b></div><div className="kpi"><span>Stock Entries</span><b>{db.stockIn.length}</b></div>
+ <div className="kpi"><span>Daily Wages</span><b>{money(db.costs?.wages??200)}</b></div>
+ <div className="kpi"><span>Current Bill</span><b>{money(db.costs?.bill??200)}</b></div>
+ <div className="kpi"><span>Other Cost</span><b>{money(db.costs?.other??100)}</b></div><button className="secondary" style={{width:"100%",marginTop:12}} onClick={exportData}>Export Backup</button></div></div>
+ <div className="card section"><h3>🍦 Menu & Prices</h3>{cats.map(c=><div key={c}><p className="pill" style={{marginTop:10}}>{c}</p>{db.menu.filter(m=>m.cat===c).map(m=><div className="menuitem" key={m.name}><div className="menuleft"><div className="foodicon">🍦</div><div><b>{m.name}</b><br/><small>Wholesale ₹26 • Stock {db.stock[m.name]||0}</small></div></div><button className="secondary" onClick={()=>changePrice(m.name)}>₹{m.price} • Edit</button></div>)}</div>)}</div>
+ <p className="muted section">All names shown in the app are in English. New flavours added here automatically appear in Stock In, Sales and Reports.</p></>
+}
+function Field({label,children}){return <div className="field"><label>{label}</label>{children}</div>}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script></body></html>
