@@ -1,1 +1,11 @@
-
+{
+  "name": "Namma Ooru Kulfi",
+  "short_name": "Kulfi",
+  "description": "Namma Ooru Kulfi Business Manager",
+  "start_url": "/Namma-ooru-kulfi/",
+  "scope": "/Namma-ooru-kulfi/",
+  "display": "standalone",
+  "background_color": "#fff8ed",
+  "theme_color": "#ff6b00",
+  "orientation": "portrait-primary"
+}
